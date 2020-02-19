@@ -10,7 +10,7 @@ MarkovChain::MarkovChain(std::map<std::vector<std::string>, MarkovNode> &inModel
     auto mb = _internalModel.begin();
     while (mb != _internalModel.end()) {
         auto mbi = (mb++)->first;
-        for (auto item : mbi) {
+        for (const auto& item : mbi) {
             this->keys.push_back(item);
         }
     }
@@ -42,7 +42,7 @@ MarkovChain MarkovChain::makeHigherOrderMarkovModel(int order, std::vector<std::
 std::string MarkovChain::generateRandomStart(MarkovChain &model) {
     std::string seed_word;
 
-    for (auto item : model.keys) {
+    for (const auto& item : model.keys) {
         if (item == "END") {
             seed_word = "END";
             break;
@@ -76,8 +76,8 @@ std::string MarkovChain::generateRandomSentence(int length, MarkovChain &model) 
     sentence[0][0] = std::toupper(sentence[0][0]);
 
     out += sentence[0];
-    for (const std::string& word : sentence) {
-        out += " " + word;
+    for (int i = 1; i < sentence.size(); i++) {
+        out += " " + sentence[i];
     }
     out += ".";
 
