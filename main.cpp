@@ -17,18 +17,27 @@ int main() {
     string word;
     while (!fis.eof()) {
         fis >> word;
-        if (word[word.length()-1] == '.') {
-            word = word.substr(0, word.length()-1);
+        string cword;
+        for (char c : word) {
+            if (isalnum(c)) {
+                cword += c;
+            }
         }
-        block.push_back(word);
+        block.push_back(cword);
     }
+    MarkovChain chain = MarkovChain::makeMarkovModel(block);
     cout << "done.\n\n";
 
-    MarkovChain chain = MarkovChain::makeMarkovModel(block);
-
-    bool generate;
+    bool generate = true;
     do {
-        string sentence = MarkovChain::generateRandomSentence(10, chain);
+        unsigned int length;
+        cout << "How long sentence? >>>";
+        cin >> length;
+        if (length <= 0) {
+            continue;
+        }
+
+        string sentence = MarkovChain::generateRandomSentence(length-1, chain);
         cout << "====================================================" << endl;
         cout << sentence << endl;
         cout << "====================================================" << endl;

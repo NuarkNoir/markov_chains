@@ -63,7 +63,7 @@ std::string MarkovChain::generateRandomStart(MarkovChain &model) {
     return seed_word;
 }
 
-std::string MarkovChain::generateRandomSentence(int length, MarkovChain &model) {
+std::string MarkovChain::generateRandomSentence(unsigned int length, MarkovChain &model) {
     std::string out;
     std::string current_word = MarkovChain::generateRandomStart(model);
     std::vector<std::string> sentence = {current_word};

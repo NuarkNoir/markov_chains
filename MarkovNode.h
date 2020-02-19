@@ -14,6 +14,7 @@
 class MarkovNode {
 private:
     std::mt19937 gen;
+
     int types, tokens;
     std::map<std::string, int> self_dict;
 public:

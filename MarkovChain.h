@@ -27,7 +27,7 @@ public:
 
     static std::string generateRandomStart(MarkovChain &model);
 
-    static std::string generateRandomSentence(int length, MarkovChain &model);
+    static std::string generateRandomSentence(unsigned int length, MarkovChain &model);
 };
 
 
