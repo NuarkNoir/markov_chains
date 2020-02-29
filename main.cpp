@@ -26,7 +26,7 @@ int main() {
             cword = "";
         }
     }
-    MarkovChain chain = MarkovChain::makeHigherOrderMarkovModel(3, block);
+    MarkovChain chain = MarkovChain::makeHigherOrderMarkovModel(1, block);
     cout << "done.\n\n";
 
     bool generate = true;
