@@ -6,6 +6,7 @@
 using namespace std;
 
 int main() {
+    srand(time(NULL)+0);
     ifstream fis("input.txt");
     if (!fis.is_open() || fis.fail()) {
         cerr << "Error with input.txt" << endl;
@@ -14,18 +15,18 @@ int main() {
 
     cout << "Parsing file...";
     vector<string> block;
-    string word;
+    string cword = "";
     while (!fis.eof()) {
-        fis >> word;
-        string cword;
-        for (char c : word) {
-            if (isalnum(c)) {
-                cword += c;
-            }
+        char c = fis.get();
+        if (isalnum(c)) {
+            cword += c;
         }
-        block.push_back(cword);
+        if (c == ' ') {
+            block.push_back(cword);
+            cword = "";
+        }
     }
-    MarkovChain chain = MarkovChain::makeMarkovModel(block);
+    MarkovChain chain = MarkovChain::makeHigherOrderMarkovModel(1, block);
     cout << "done.\n\n";
 
     bool generate = true;

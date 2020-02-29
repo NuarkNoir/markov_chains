@@ -5,12 +5,10 @@
 #include "MarkovNode.h"
 
 MarkovNode::MarkovNode() {
-    this->gen = std::mt19937((int) time(nullptr)+0);
     this->types = 0;
     this->tokens = 0;
 }
 MarkovNode::MarkovNode(const std::vector<std::string> &iterable) {
-    this->gen = std::mt19937((int) time(nullptr)+0);
     this->types = 0;
     this->tokens = 0;
     this->update(iterable);
@@ -41,14 +39,12 @@ int MarkovNode::count(const std::string &item) {
 }
 
 std::string MarkovNode::returnRandomWord() {
-    std::uniform_int_distribution<> dis(0, this->self_dict.size()-1);
-    int pos = dis(gen);
+    int pos = rand() % this->self_dict.size();
     return this->keys[pos];
 }
 
 std::string MarkovNode::returnWeightedRandomWord() {
-    std::uniform_int_distribution<> dis(0, this->self_dict.size()-1);
-    int random_int = dis(gen);
+    int random_int = rand() % this->self_dict.size();
     int index = 0;
     std::string out = "<that_shouldn't_happen>";
 

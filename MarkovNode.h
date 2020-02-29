@@ -8,13 +8,10 @@
 #include <iterator>
 #include <vector>
 #include <map>
-#include <random>
 #include <ctime>
 
 class MarkovNode {
 private:
-    std::mt19937 gen;
-
     int types, tokens;
     std::map<std::string, int> self_dict;
 public:
