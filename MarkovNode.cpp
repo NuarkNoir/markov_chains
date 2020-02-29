@@ -4,9 +4,6 @@
 
 #include "MarkovNode.h"
 
-/*
-
-*/
 MarkovNode::MarkovNode() {
     this->types = 0;
     this->tokens = 0;
